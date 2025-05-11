@@ -1,0 +1,62 @@
+<!-- templates/result.html -->
+<!DOCTYPE html>
+<html>
+<head>
+    <title>分析结果 - {{ movie_name }}</title>
+    <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+    <style>
+        body { max-width: 800px; margin: 20px auto; padding: 20px; }
+        .card { padding: 20px; border: 1px solid #ddd; margin: 10px 0; }
+        .time { color: #666; font-size: 0.9em; }
+    </style>
+</head>
+<body>
+    <h1>🎥 {{ movie_name }} 分析结果</h1>
+    <div class="time">耗时 {{ time }} 秒</div>
+
+    <!-- 情感分析图表 -->
+    <div class="card">
+        <h3>情感分析</h3>
+        <canvas id="myChart" width="400" height="200"></canvas>
+    </div>
+
+    <!-- 示例评论 -->
+    <div class="card">
+        <h3>最新短评示例</h3>
+        <ul>
+            {% for comment in data.comments %}
+            <li style="margin: 10px 0;">{{ comment }}</li>
+            {% endfor %}
+        </ul>
+    </div>
+
+    <a href="/">← 返回首页</a>
+
+    <script>
+        // 图表配置
+        const ctx = document.getElementById('myChart');
+        new Chart(ctx, {
+            type: 'pie',
+            data: {
+                labels: ['正面评价', '负面评价'],
+                datasets: [{
+                    label: '情感分布',
+                    data: [{{ data.analysis.positive }}, {{ data.analysis.negative }}],
+                    backgroundColor: [
+                        'rgba(75, 192, 192, 0.8)',
+                        'rgba(255, 99, 132, 0.8)'
+                    ],
+                    borderWidth: 1
+                }]
+            },
+            options: {
+                responsive: true,
+                plugins: {
+                    legend: { position: 'top' },
+                    title: { display: true, text: '情感分布比例' }
+                }
+            }
+        });
+    </script>
+</body>
+</html>

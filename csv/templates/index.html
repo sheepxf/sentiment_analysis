@@ -1,0 +1,27 @@
+<!-- templates/index.html -->
+<!DOCTYPE html>
+<html>
+<head>
+    <title>电影情感分析</title>
+    <style>
+        body { max-width: 800px; margin: 20px auto; padding: 20px; }
+        .box { padding: 20px; border: 1px solid #ddd; border-radius: 8px; }
+        form { display: flex; gap: 10px; }
+        input { flex: 1; padding: 8px; border: 1px solid #ddd; }
+        button { padding: 8px 20px; background: #007bff; color: white; border: none; }
+    </style>
+</head>
+<body>
+    <div class="box">
+        <h1>🎬 电影评论分析系统</h1>
+        {% if error %}
+        <div style="color: red; padding: 10px; background: #ffe6e6;">{{ error }}</div>
+        {% endif %}
+        <form method="POST">
+            <input type="text" name="movie_name"
+                   placeholder="请输入电影名称（示例：肖申克的救赎）" required>
+            <button type="submit">开始分析</button>
+        </form>
+    </div>
+</body>
+</html>
