@@ -1,0 +1,26 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+    <meta charset="UTF-8">
+    <title>豆瓣电影情感分析</title>
+    <link rel="stylesheet" href="{{ url_for('static', filename='css/bootstrap.min.css') }}">
+</head>
+<body>
+    <div class="container">
+        <h1 class="text-center">豆瓣电影情感分析</h1>
+        <form method="post">
+            {{ form.csrf_token }}
+            <div class="mb-3">
+                <label for="{{ form.movie_id.id }}" class="form-label">{{ form.movie_id.label.text }}</label>
+                <input type="text" class="form-control" id="{{ form.movie_id.id }}" name="{{ form.movie_id.name }}" required>
+            </div>
+            <div class="mb-3">
+                <label for="{{ form.pages.id }}" class="form-label">{{ form.pages.label.text }}</label>
+                <input type="number" class="form-control" id="{{ form.pages.id }}" name="{{ form.pages.name }}" value="{{ form.pages.default }}">
+            </div>
+            <button type="submit" class="btn btn-primary">{{ form.submit.label.text }}</button>
+        </form>
+    </div>
+    <script src="{{ url_for('static', filename='js/bootstrap.bundle.min.js') }}"></script>
+</body>
+</html>

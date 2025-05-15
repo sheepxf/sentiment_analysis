@@ -64,6 +64,8 @@ def get_movie_inf(url):
             "movie_title": movie_title,
             "movie_rating": movie_rating,
 
+
+
         })
     with open('json/movie_info.json', 'w', encoding='utf-8') as f:
             json.dump(movies, f, ensure_ascii=False, indent=4)
